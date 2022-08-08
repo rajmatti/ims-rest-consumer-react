@@ -3,7 +3,7 @@ import axios from 'axios'; // For API calls, we will be using Axios - npm instal
 const API_URL='http://localhost:8085/ims/api/dealer';
 const API_URL1='http://localhost:8085/ims/api/dealers';
 
-export default class AuthenticationService{
+class AuthenticationService{
 
     loginDealer(dealer){
 
@@ -11,3 +11,5 @@ export default class AuthenticationService{
     }
 
 } 
+//Create an object of AuthenticationService.
+export default new AuthenticationService();

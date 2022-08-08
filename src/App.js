@@ -31,7 +31,7 @@ function App() {
       </header>
       <div style={{ backgroundImage: "url(/images/back1.jpg)",
                     backgroundRepeat: 'no-repeat',
-                    backgroundSize:'cover', minHeight:'100%'}}>
+                    backgroundSize:'cover', minHeight:'100vh',minWidth:'100vw'}}>
       <Router>
         <Navbar></Navbar>
         <div className='container'>
