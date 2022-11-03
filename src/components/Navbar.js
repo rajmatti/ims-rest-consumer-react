@@ -1,4 +1,6 @@
 import React from "react";
+
+import { withRouter } from 'react-router-dom'
 import {
     Nav,
     NavLink,
@@ -8,24 +10,30 @@ import {
     NavBtnLink,
 } from './NavbarElements';
 
+import AuthenticationService from "../service/AuthenticationService";
+
 const Navbar= () => {
+    const isUserLoggedIn = AuthenticationService.isUserLoggedIn();
     return (
+        
         <>
         <Nav>
             <Bars/>
             <NavMenu>
-                <NavLink to='/'>Home</NavLink>
-                <NavLink to='/products'>Products</NavLink>
-                <NavLink to='/about'>About</NavLink>
-                <NavLink to='/register'>Register</NavLink>
+                {isUserLoggedIn &&  <NavLink to='/'>Home</NavLink>}
+                {isUserLoggedIn &&   <NavLink to='/products'>Products</NavLink>}
+                {!isUserLoggedIn && <NavLink to='/register'>Register</NavLink>}
+                {!isUserLoggedIn &&<NavLink to='/about'>About</NavLink>}
+              
             </NavMenu> 
 
             <NavBtn>
-                    <NavBtnLink to='/login'>Login</NavBtnLink>
+                {!isUserLoggedIn &&   <NavBtnLink to='/login'>Login</NavBtnLink>}
+                {isUserLoggedIn &&   <NavBtnLink to='/logout' onClick={AuthenticationService.logout}>Logout</NavBtnLink>}
             </NavBtn>
         </Nav>
         </>
     );
 }
 
-export default Navbar;
+export default withRouter(Navbar);

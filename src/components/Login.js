@@ -46,6 +46,9 @@ export default class Login extends Component{
             if(response.data){
                 this.setState({showSuccessMessage:true})
                 this.setState({hasLoginFailed:false})
+
+                AuthenticationService.registerSuccessfulLogin(this.state.email,this.state.password);
+
                 this.props.history.push('/products')
             }else{
                 this.setState({ showSuccessMessage: false })

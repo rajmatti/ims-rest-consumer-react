@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import ProductService from "../service/ProductService";
 
-const SIZES = ["xs", "sm", "lg", "2x", "3x", "5x", "7x", "10x"];
+import AuthenticationService from "../service/AuthenticationService";
+
+
 
 export default class Products extends Component{
 
@@ -14,7 +16,10 @@ export default class Products extends Component{
     constructor(props){
         super(props)
      
-        this.state={products:[]};
+        this.state={
+            products:[],
+            user:''
+    };
 
         this.deleteProduct=this.deleteProduct.bind(this);
         this.viewProduct=this.viewProduct.bind(this);
@@ -27,8 +32,13 @@ export default class Products extends Component{
       ProductService.getProducts().then((response) => { //Invokes service method.
            this.setState({products:response.data});
       });  
+
+    this.setState.user=  AuthenticationService.getLoggedInUserName();
+   
+      console.log(this.setState.user);
     }
-    
+
+       
     deleteProduct(id){
         ProductService.deleteProduct(id).then((response) => {
             this.setState({products:this.state.products.filter(product => product.id !== id)});
@@ -56,6 +66,7 @@ export default class Products extends Component{
      render(){
         return(
             <div>
+                <div className="alert alert-warning"> Welcome {this.setState.user}</div>
                 <h1 className = "text-center"> Products List</h1>
 
                 <div className = "row">

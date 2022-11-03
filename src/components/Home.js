@@ -10,7 +10,7 @@ const Home = () => {
         height: '100vh'
       }}
     >
-      <h1>Welcome to Inventory Management System</h1>
+      <h1>Welcome to Wells Fargo</h1>
     </div>
   );
 };

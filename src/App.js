@@ -12,6 +12,12 @@ import Products from './components/Products';
 import ViewProduct from './components/ViewProduct';
 import CreateProduct from './components/CreateProduct';
 import Login from './components/Login';
+import Register from './components/Register';
+import Logout from './components/Logout';
+
+
+import AuthenticatedRoute from './components/AuthenticatedRoute';
+
 
 library.add(faTrash, faEdit, faPlus, faCamera, faList);
 
@@ -38,10 +44,12 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home}></Route>
           <Route path='/about' component={About}></Route>
-          <Route path='/products' component={Products}></Route>
+          <AuthenticatedRoute path='/products' component={Products}/>
           <Route path='/viewProduct/:id' component={ViewProduct}></Route>
           <Route path='/addProduct/:id' component={CreateProduct}></Route> 
-          <Route path='/login' component={Login}></Route>      
+          <Route path='/login' component={Login}></Route>  
+          <Route path='/register' component={Register}></Route>   
+          <AuthenticatedRoute path='/logout' component={Logout}/> 
         </Switch>
         </div>
       </Router>
